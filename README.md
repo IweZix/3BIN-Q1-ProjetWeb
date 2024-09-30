@@ -1,4 +1,4 @@
-<h1 align="center"> vue-boilerplate </h1>
+<h1 align="center"> vue.js-boilerplate </h1>
 
 <div align="center">
     <a href="https://img.shields.io/github/license/IweZix/WezBot"><img src="https://img.shields.io/github/license/IweZix/vue-boilerplate" alt="license"/></a>
