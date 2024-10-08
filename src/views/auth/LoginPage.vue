@@ -30,11 +30,10 @@ export default {
   methods: {
     async login(){
       try {
-        console.log(this.username, this.password);
         const response: any = await login(this.username, this.password);
         if(response?.token){
           localStorage.setItem('token', response.token);
-          localStorage.setItem('username', JSON.stringify(response.user));
+          localStorage.setItem('username', response.username);
           this.$router.push({ name: 'Home' });
         }
       } catch (error) {
