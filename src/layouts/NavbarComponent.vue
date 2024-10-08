@@ -42,6 +42,9 @@ export default {
             </li>
           </ul>
         </div>
+        <div>
+          <router-link to="/login" class="btn btn-primary">Login</router-link>
+        </div>
       </div>
     </nav>
   </div>
