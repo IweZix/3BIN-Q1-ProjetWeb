@@ -1,8 +1,15 @@
 import axios from 'axios';
+import AuthenticatedUser from '@/types/AuthenticatedUser';
 
-export const login = async (username: String, password: String) => {
+/**
+ * Logs in a user
+ * @param {String} username - user's username
+ * @param {String} password - user's password
+ * @returns {Promise<AuthenticatedUser>} - the authenticated user
+ */
+export const login = async (username: String, password: String): Promise<AuthenticatedUser> => {
     try {
-        const response = await axios.post('/api/auths/login', {
+        const response = await axios.post<AuthenticatedUser>('/api/auths/login', {
             username,
             password
         });
@@ -13,9 +20,14 @@ export const login = async (username: String, password: String) => {
     }
 };
 
-export const verify = async (token: String) => {
+/**
+ * Verifies a user
+ * @param {String} token - the user's token
+ * @returns {Promise<AuthenticatedUser>} - the authenticated user
+ */
+export const verify = async (token: String): Promise<AuthenticatedUser> => {
     try {
-        const response = await axios.post('/api/auths/verify', {
+        const response = await axios.post<AuthenticatedUser>('/api/auths/verify', {
             token
         });
 

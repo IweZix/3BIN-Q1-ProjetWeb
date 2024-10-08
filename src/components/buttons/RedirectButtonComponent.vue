@@ -15,22 +15,26 @@ export default {
     }
   },
   methods: {
+    /**
+     * Redirect to the route specified in the props
+     */
     goTo() {
-      const routeExists = this.$router.getRoutes().some(route => route.name === this.route);
+      const routeExists: boolean = this.$router.getRoutes().some(route => route.name === this.route);
 
       if (routeExists) {
         router.push({
           name: this.route
         });
       } else {
-        router.push({ name: 'NotFound' });
+        router.push({
+          name: 'NotFound' 
+        });
       }
     }
   }
 
 };
 </script>
-
 
 <template>
   <button class="custom-button-white" @click="goTo">{{ text }}</button>
