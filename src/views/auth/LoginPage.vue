@@ -4,33 +4,30 @@ import { renderPageTitle } from '@/utils/render/render';
 import { login } from '@/services/auths';
 import InputComponent from '@/components/Auth/InputComponent.vue';
 import RedirectButtonComponent from '@/components/buttons/RedirectButtonComponent.vue';
+import AuthenticatedUser from '@/types/AuthenticatedUser';
 
 export default {
   name: 'LoginPage',
   data() {
     return {
-      username: '',
-      password: '',
+      username: '' as string,
+      password: '' as string,
     };
   },
-
   components: {
     InputComponent,
     RedirectButtonComponent,
   },
-
-  /**
-   * Mounted lifecycle hook
-   * This function is called when the component is mounted
-   */
   mounted() {
     renderPageTitle('Login');
   },
-
   methods: {
+    /**
+     * Login the user
+     */
     async login(){
       try {
-        const response: any = await login(this.username, this.password);
+        const response: AuthenticatedUser = await login(this.username, this.password);
         if(response?.token){
           localStorage.setItem('token', response.token);
           localStorage.setItem('username', response.username);
@@ -43,9 +40,17 @@ export default {
         }
       }
     },
+    /**
+     * Update the username value
+     * @param {string} value - The new value
+     */
     updateUsername(value: string){
       this.username = value; 
     },
+    /**
+     * Update the password value
+     * @param {string} value - The new value
+     */
     updatePassword(value: string){
       this.password = value;
     },

@@ -20,8 +20,12 @@ export default {
     }
   },
   methods: {
+    /**
+     * Handle the input event
+     * @param {Event} event - The input event
+     */
     handleInput(event: Event) {
-      const value = (event.target as HTMLInputElement).value;
+      const value: string = (event.target as HTMLInputElement).value;
       this.method(value); // Appelle la méthode pour mettre à jour la valeur dans le parent
       this.$emit('update:vmodel', value); // Émet un événement 'update:vmodel'
     }
