@@ -1,5 +1,4 @@
 <script lang="ts">
-import { logout } from '@/services/auths';
 
 export default {
   name: 'LogoutComponent',
@@ -9,8 +8,7 @@ export default {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
 
-        
-      await logout();
+
       this.$router.push({ name: 'Login' });
     } catch (error) {
       console.error('An error occurred while logging out:', error);
