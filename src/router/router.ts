@@ -13,6 +13,11 @@ import Login from '@/views/auth/LoginPage.vue';
 import Register from '../views/auth/RegisterPage.vue';
 
 /**
+ * Import components
+ */
+import Logout from '../components/Auth/LogoutComponent.vue';
+
+/**
  * Define routes
  */
 const routes = [
@@ -35,6 +40,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component : Logout
   },
   /**
    * Define not found route
