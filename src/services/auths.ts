@@ -24,3 +24,16 @@ export const verify = async (token: String) => {
         throw new Error('An error occurred while verifying the user');
     }
 };
+
+export const register = async (username: String, password: String) => {
+    try {
+        const response = await axios.post('/api/auths/register', {
+            username,
+            password
+        });
+
+        return response.data;
+    } catch (error) {
+        throw new Error('An error occurred while registering the user');
+    }
+};
