@@ -5,16 +5,23 @@
  */
 import { renderPageTitle } from '@/utils/render/render';
 import MusicPageBackPlayListComponent from '@/components/MusicPage/MusicPageBackPlayListComponent.vue';
+import { getOnePlaylist } from '@/services/playlists';
+import { useRoute } from 'vue-router';
+
 
 export default {
   /**
    * Name of the component
    */
   name: 'MusicPage',
-
-  /**
-   * Data of the component
-   */
+  setup() {
+    const route = useRoute();
+    const playlistId = route.params.id;
+    
+    return { 
+      playlistId,
+    };
+  },
   
   components: {
     MusicPageBackPlayListComponent,
@@ -33,10 +40,16 @@ export default {
    */
   methods: {
     /**
-     * Increment the integer value
+     * get current playlist User
      */
-    incrementInteger() {
-      this.integer++;
+    async getPlaylistUser() {
+      try {
+        const response = await getOnePlaylist(this.playlistId, localStorage.getItem('token'));
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+
     }
   }
 };
@@ -46,6 +59,7 @@ export default {
 <template>
     <div class="text-center my-4 title-search">
       <h1>This is the MusicPage</h1>
+      <h2>Playlist ID: {{ playlistId }}</h2>
     </div>
     <MusicPageBackPlayListComponent />
 </template>

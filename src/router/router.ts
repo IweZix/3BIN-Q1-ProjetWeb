@@ -38,7 +38,7 @@ const routes = [
    * Define music route
    */
   {
-    path: '/playlist/music',
+    path: '/playlists/:id',
     name: 'Music',
     component: Music
   }
