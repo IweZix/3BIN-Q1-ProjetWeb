@@ -9,6 +9,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/HomePage.vue';
 import About from '../views/AboutPage.vue';
 import NotFound from '@/views/NotFoundPage.vue';
+import Music from '@/views/MusicPage.vue';
+
 
 /**
  * Define routes
@@ -31,6 +33,14 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound
+  },
+  /**
+   * Define music route
+   */
+  {
+    path: '/playlist/music',
+    name: 'Music',
+    component: Music
   }
 ];
 
