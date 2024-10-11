@@ -14,6 +14,11 @@ import Register from '@/views/auth/RegisterPage.vue';
 import Playlists from '@/views/playlist/PlaylistsPage.vue';
 
 /**
+ * Import components
+ */
+import Logout from '../components/Auth/LogoutComponent.vue';
+
+/**
  * Define routes
  */
 const routes = [
@@ -41,6 +46,10 @@ const routes = [
     path: '/playlists',
     name: 'Playlists',
     component: Playlists
+  },
+    path: '/logout',
+    name: 'Logout',
+    component : Logout
   },
   /**
    * Define not found route
