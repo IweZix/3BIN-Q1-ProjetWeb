@@ -30,7 +30,7 @@ export default {
     <div class="p-4" id="navbarWrapper">
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-          <router-link to="/" class="navbar-brand nav-link" id="demonopediaLogo">Vue.js</router-link>
+          <router-link to="/" class="navbar-brand nav-link" id="demonopediaLogo">Melodiq</router-link>
           <button
             class="navbar-toggler"
             type="button"
@@ -50,6 +50,9 @@ export default {
               <li class="nav-item">
                 <router-link to="/about" class="nav-link">About</router-link>
               </li>
+              <li class="nav-item">
+                <router-link to="/playlists" class="nav-link">Playlists</router-link>
+              </li>
             </ul>
           </div>
           <div>
@@ -66,7 +69,7 @@ export default {
     <div class="p-4" id="navbarWrapper">
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-          <router-link to="/" class="navbar-brand nav-link" id="demonopediaLogo">Vue.js</router-link>
+          <router-link to="/" class="navbar-brand nav-link" id="demonopediaLogo">Melodiq</router-link>
           <button
             class="navbar-toggler"
             type="button"
