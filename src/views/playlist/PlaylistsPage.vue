@@ -41,7 +41,6 @@ export default {
         });
       }
     });
-    
   }
 };
 </script>
@@ -49,13 +48,14 @@ export default {
 <template>
   <div class="text-center my-4 title-search">
     <h1>There is your playlists {{ user.username }} </h1>
+  </div>
+  <div class="container">
       <div if="playlists" class="container">
         <div class="row">
               <CardComponent v-for="playlist in playlists"
                 :key="playlist.id"
-                :id="playlist.id"
+                :id="playlist.songs.length ? playlist.songs[0].id : null"
                 :title="playlist.name"
-                :image="playlist.image"
                 :nbMusic="playlist.songs.length"
               />
             </div>
