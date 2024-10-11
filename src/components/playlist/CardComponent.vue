@@ -14,7 +14,7 @@ export default {
     },
     image: {
       type: String,
-      required: true
+      required: true,
     },
     nbMusic: {
       type: Number,

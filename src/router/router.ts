@@ -10,7 +10,8 @@ import Home from '../views/HomePage.vue';
 import About from '../views/AboutPage.vue';
 import NotFound from '@/views/NotFoundPage.vue';
 import Login from '@/views/auth/LoginPage.vue';
-import Register from '../views/auth/RegisterPage.vue';
+import Register from '@/views/auth/RegisterPage.vue';
+import Playlists from '@/views/playlist/PlaylistsPage.vue';
 
 /**
  * Define routes
@@ -35,6 +36,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/playlists',
+    name: 'Playlists',
+    component: Playlists
   },
   /**
    * Define not found route

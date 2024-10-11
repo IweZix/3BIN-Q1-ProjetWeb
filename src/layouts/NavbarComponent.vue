@@ -50,6 +50,9 @@ export default {
               <li class="nav-item">
                 <router-link to="/about" class="nav-link">About</router-link>
               </li>
+              <li class="nav-item">
+                <router-link to="/playlists" class="nav-link">Playlists</router-link>
+              </li>
             </ul>
           </div>
           <div>
