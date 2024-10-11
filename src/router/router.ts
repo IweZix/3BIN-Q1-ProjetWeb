@@ -47,6 +47,7 @@ const routes = [
     name: 'Playlists',
     component: Playlists
   },
+  {
     path: '/logout',
     name: 'Logout',
     component : Logout
