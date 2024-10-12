@@ -31,7 +31,7 @@ export default {
     }
   },
   methods: {
-    ButtonHandler: function (id: number) {
+    ButtonHandler: function (id: String) {
         console.log('Button clicked with id: ' + id);
     }
   }
