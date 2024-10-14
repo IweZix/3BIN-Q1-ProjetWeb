@@ -1,8 +1,8 @@
 <script lang="ts">
 /// <reference types="vue" />
 import { renderPageTitle } from '@/utils/render/render';
-import MusicPageBackPlayListComponent from '@/components/musicpage/MusicPageBackPlayListComponent.vue';
-import MusicPageCardComponent from '@/components/musicpage/MusicPageCardComponent.vue';
+import MusicPageBackPlayListComponent from '@/components/MusicPage/MusicPageBackPlayListComponent.vue';
+import MusicPageCardComponent from '@/components/MusicPage/MusicPageCardComponent.vue';
 import { getPlaylistUser } from '@/services/playlist';
 import { useRoute } from 'vue-router';
 import AuthenticatedUser from '@/types/AuthenticatedUser';
@@ -53,7 +53,7 @@ export default {
     try {
       this.user = await verify(localStorage.getItem('token') || '');
       await this.getPlaylistUser(this.playlistId);
-      console.log('Playlist:', this.playlist);
+      console.log('Playlist:', this.playlist); // doit etre remove apres pour la version finale
     } catch (error) {
       console.error('Error fetching playlist:', error);
     }
@@ -71,15 +71,16 @@ export default {
 
   <MusicPageBackPlayListComponent />
 
+  <!-- doit etre refait pour afficher les musiques de la playlist -->
   <!-- Boucle sur la playlist pour générer une carte par musique -->
   <div class="playlist-grid">
     <MusicPageCardComponent 
       v-for="(track, index) in playlist" 
       :key="index" 
-      :image="track.image" 
+      :image="track.image"  
       :title="track.title" 
-      :artist="track.artist" 
-      :backContent="track.description" 
+      :artist="track.artist[0].name" 
+      :backContent="track.album" 
     />
   </div>
 </template>
