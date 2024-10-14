@@ -24,7 +24,7 @@ export default {
          */
         goToPlayListPage() {
             router.push({
-                name: 'Home' // Change this to the name in the router to the PlayList Page
+                name: 'Playlists'
             });
         }
     }
