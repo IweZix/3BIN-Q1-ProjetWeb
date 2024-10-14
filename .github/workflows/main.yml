@@ -3,7 +3,6 @@ run-name: Testing out GitHub Actions 🚀
 
 on:
   push:
-    branches: [ main ]
 
 jobs:
   build:
