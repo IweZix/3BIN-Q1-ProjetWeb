@@ -1,4 +1,4 @@
-<script lang="js">
+<script lang="ts">
 import router from '@/router/router';
 
 export default {

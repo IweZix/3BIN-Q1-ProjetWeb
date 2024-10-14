@@ -1,68 +1,94 @@
-<script lang="js">
-
-/**
- * Import of MusicPage component
- */
+<script lang="ts">
+/// <reference types="vue" />
 import { renderPageTitle } from '@/utils/render/render';
-import MusicPageBackPlayListComponent from '@/components/MusicPage/MusicPageBackPlayListComponent.vue';
-import { getOnePlaylist } from '@/services/playlists';
+import MusicPageBackPlayListComponent from '@/components/musicpage/MusicPageBackPlayListComponent.vue';
+import MusicPageCardComponent from '@/components/musicpage/MusicPageCardComponent.vue';
+import { getPlaylistUser } from '@/services/playlist';
 import { useRoute } from 'vue-router';
-
+import AuthenticatedUser from '@/types/AuthenticatedUser';
+import { verify } from '@/services/auths';
 
 export default {
   /**
    * Name of the component
    */
   name: 'MusicPage',
+  components: {
+    MusicPageBackPlayListComponent,
+    MusicPageCardComponent, 
+  },
   setup() {
     const route = useRoute();
-    const playlistId = route.params.id;
-    
+    const playlistId = Number(route.params.id);
+
     return { 
       playlistId,
     };
   },
-  
-  components: {
-    MusicPageBackPlayListComponent,
+  data() {
+    return {
+      user: {} as AuthenticatedUser,
+      name: '' as string,
+      playlist: [] as Array<any>,
+    };
   },
 
+  methods: {
+    async getPlaylistUser(playlistId: number) {
+      try {
+        const response = await getPlaylistUser(playlistId);
+        this.playlist = response.songs;
+      } catch (error) {
+        console.error('Error fetching playlist:', error);
+      }
+    }
+  },
+  
   /**
    * Mounted lifecycle hook
    * This function is called when the component is mounted
    */
   async mounted() {
     renderPageTitle('Music');
+    try {
+      this.user = await verify(localStorage.getItem('token') || '');
+      await this.getPlaylistUser(this.playlistId);
+      console.log('Playlist:', this.playlist);
+    } catch (error) {
+      console.error('Error fetching playlist:', error);
+    }
+    
   },
 
-  /**
-   * Methods of the component
-   */
-  methods: {
-    /**
-     * get current playlist User
-     */
-    async getPlaylistUser() {
-      try {
-        const response = await getOnePlaylist(this.playlistId, localStorage.getItem('token'));
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
-
-    }
-  }
 };
-
 </script>
 
 <template>
-    <div class="text-center my-4 title-search">
-      <h1>This is the MusicPage</h1>
-      <h2>Playlist ID: {{ playlistId }}</h2>
-    </div>
-    <MusicPageBackPlayListComponent />
+  <div class="text-center my-4 title-search">
+    <h1>This is the MusicPage</h1>
+    <h2>Playlist ID: {{ playlistId }}</h2>
+  </div>
+
+  <MusicPageBackPlayListComponent />
+
+  <!-- Boucle sur la playlist pour générer une carte par musique -->
+  <div class="playlist-grid">
+    <MusicPageCardComponent 
+      v-for="(track, index) in playlist" 
+      :key="index" 
+      :image="track.image" 
+      :title="track.title" 
+      :artist="track.artist" 
+      :backContent="track.description" 
+    />
+  </div>
 </template>
 
-<style></style>
-
+<style scoped>
+.playlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+</style>

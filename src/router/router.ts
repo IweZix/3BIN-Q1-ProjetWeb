@@ -50,7 +50,7 @@ const routes = [
    * Define music route
    */
   {
-    path: '/playlists/:id',
+    path: '/playlist/:id',
     name: 'Music',
     component: Music
   }
