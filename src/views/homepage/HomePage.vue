@@ -3,13 +3,18 @@
  * Import of HomePage component
  */
 import { renderPageTitle } from '@/utils/render/render';
-import 
-
+import SearchBarComponent from '@/components/HomePage/SearchBarComponent.vue';
+/**
+ * Export of HomePage component
+ */
 export default {
   /**
    * Name of the component
    */
   name: 'HomePage',
+  components: {
+    SearchBarComponent
+  },
 
   /**
    * Data of the component
@@ -44,12 +49,10 @@ export default {
 </script>
 
 <template>
+  
   <div class="text-center my-4 title-search">
-    <h1>MelodiqPatate</h1>
-  </div>
-  <div class="text-center my-4">
-    <input class="text-center my-4" type="text" placeholder="Chercher votre Musique" v-model="musicName" />
-    <button @click="incrementInteger" class="btn btn-primary">Increment</button>
+    <h1>Melodiq your plateform of playlist </h1>
+    <SearchBarComponent />
   </div>
 </template>
 
