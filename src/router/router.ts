@@ -32,6 +32,9 @@ const routes = [
     name: 'NotFound',
     component: NotFound
   }
+  /**
+   * 
+   */
 ];
 
 /**
