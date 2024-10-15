@@ -1,7 +1,6 @@
 <script lang="ts">
 import router from '@/router/router';
 import { searchHomepage } from '@/services/searchHomepage';
-import { searchHomepage } from '@/services/searchHomepage';
 
 export default {
   /**
