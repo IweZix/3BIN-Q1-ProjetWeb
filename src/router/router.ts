@@ -70,6 +70,9 @@ const routes = [
     name: 'Music',
     component: Music
   }
+  /**
+   * 
+   */
 ];
 
 /**

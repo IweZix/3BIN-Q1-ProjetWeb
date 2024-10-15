@@ -3,6 +3,7 @@
  * Import of HomePage component
  */
 import { renderPageTitle } from '@/utils/render/render';
+import 
 
 export default {
   /**
@@ -15,7 +16,8 @@ export default {
    */
   data() {
     return {
-      integer: 0 as number
+      integer: 0 as number,
+      musicName: '' as string
     };
   },
 
@@ -24,7 +26,7 @@ export default {
    * This function is called when the component is mounted
    */
   async mounted() {
-    renderPageTitle('Home');
+    renderPageTitle('Melodiq');
   },
 
   /**
@@ -43,23 +45,11 @@ export default {
 
 <template>
   <div class="text-center my-4 title-search">
-    <h1>This is the HomePage</h1>
+    <h1>MelodiqPatate</h1>
   </div>
-  <div v-if="integer === 0" class="text-center my-4">
-    <h2 class="text-center my-4">The value of the integer is {{ integer }}</h2>
-    <p>Click on the button to increment</p>
+  <div class="text-center my-4">
+    <input class="text-center my-4" type="text" placeholder="Chercher votre Musique" v-model="musicName" />
     <button @click="incrementInteger" class="btn btn-primary">Increment</button>
-  </div>
-  <div v-else-if="integer > 0 && integer < 10" class="text-center my-4">
-    <h2 class="text-center my-4">The value of the integer is {{ integer }}</h2>
-    <p>Click on the button to increment</p>
-    <p>You can go up to 10</p>
-    <button @click="incrementInteger" class="btn btn-primary">Increment</button>
-  </div>
-  <div v-else class="text-center my-4">
-    <h2 class="text-center my-4">The value of the integer is {{ integer }}</h2>
-    <p>You reached the maximum value</p>
-    <button @click="integer = 0" class="btn btn-primary">Reset</button>
   </div>
 </template>
 
