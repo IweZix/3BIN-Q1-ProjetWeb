@@ -3,10 +3,11 @@
 import { renderPageTitle } from '@/utils/render/render';
 import MusicPageBackPlayListComponent from '@/components/MusicPage/MusicPageBackPlayListComponent.vue';
 import MusicPageCardComponent from '@/components/MusicPage/MusicPageCardComponent.vue';
-import { getPlaylistUser } from '@/services/playlist';
+import { getPlaylistUser } from '@/services/musics';
 import { useRoute } from 'vue-router';
 import AuthenticatedUser from '@/types/AuthenticatedUser';
 import { verify } from '@/services/auths';
+import Song from '@/types/Song';
 
 export default {
   /**
@@ -29,7 +30,7 @@ export default {
     return {
       user: {} as AuthenticatedUser,
       name: '' as string,
-      playlist: [] as Array<any>,
+      playlist: [] as Song[],
     };
   },
 
