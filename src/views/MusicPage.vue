@@ -3,11 +3,12 @@
 import { renderPageTitle } from '@/utils/render/render';
 import MusicPageBackPlayListComponent from '@/components/MusicPage/MusicPageBackPlayListComponent.vue';
 import MusicPageCardComponent from '@/components/MusicPage/MusicPageCardComponent.vue';
+import MusicPageHeaderComponent from '@/components/MusicPage/MusicPageHeaderComponent.vue';
 import { getPlaylistUser } from '@/services/musics';
 import { useRoute } from 'vue-router';
 import AuthenticatedUser from '@/types/AuthenticatedUser';
 import { verify } from '@/services/auths';
-import Song from '@/types/Song';
+import Playlist from '@/types/Playlist';
 
 export default {
   /**
@@ -17,6 +18,7 @@ export default {
   components: {
     MusicPageBackPlayListComponent,
     MusicPageCardComponent, 
+    MusicPageHeaderComponent,
   },
   setup() {
     const route = useRoute();
@@ -29,16 +31,15 @@ export default {
   data() {
     return {
       user: {} as AuthenticatedUser,
-      name: '' as string,
-      playlist: [] as Song[],
+      playlist: {} as Playlist,
     };
   },
 
   methods: {
     async getPlaylistUser(playlistId: number) {
       try {
-        const response = await getPlaylistUser(playlistId);
-        this.playlist = response.songs;
+        const response: Playlist = await getPlaylistUser(playlistId);
+        this.playlist = response;
       } catch (error) {
         console.error('Error fetching playlist:', error);
       }
@@ -54,43 +55,60 @@ export default {
     try {
       this.user = await verify(localStorage.getItem('token') || '');
       await this.getPlaylistUser(this.playlistId);
-      console.log('Playlist:', this.playlist); // doit etre remove apres pour la version finale
+      console.log('Playlist:', this.playlist); // doit être supprimé après pour la version finale
     } catch (error) {
       console.error('Error fetching playlist:', error);
     }
-    
   },
-
 };
 </script>
 
 <template>
-  <div class="text-center my-4 title-search">
-    <h1>This is the MusicPage</h1>
-    <h2>Playlist ID: {{ playlistId }}</h2>
-  </div>
+  <div class="music-page">
+    <div class="header-container">
+      <MusicPageBackPlayListComponent class="back-playlist" />
+      <MusicPageHeaderComponent 
+        :imageSrc="playlist.songs && playlist.songs.length > 0 ? playlist.songs[playlist.songs.length - 1].image : ''"
+        :name="playlist.name"
+        :nbMusic="playlist.songs ? playlist.songs.length : 0"
+        class="music-header"
+      />
+    </div>
 
-  <MusicPageBackPlayListComponent />
-
-  <!-- doit etre refait pour afficher les musiques de la playlist -->
-  <!-- Boucle sur la playlist pour générer une carte par musique -->
-  <div class="playlist-grid">
-    <MusicPageCardComponent 
-      v-for="(track, index) in playlist" 
-      :key="index" 
-      :image="track.image"  
-      :title="track.title" 
-      :artist="track.artist[0].name" 
-      :backContent="track.album" 
-    />
+    <div class="playlist-grid">
+      <MusicPageCardComponent 
+        v-for="song in playlist.songs" 
+        :key="song.id" 
+        :image="song.image"  
+        :title="song.title" 
+        :artist="song.artist[0]" 
+        :backContent="song.album"
+      />
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style>
+.header-container {
+  display: flex;
+  justify-content: center; /* Centre les composants horizontalement */
+  align-items: center; /* Centre les composants verticalement */
+  margin-bottom: 20px; /* Ajoute un espacement entre le header et la playlist */
+}
+
+.back-playlist {
+  margin-right: 20px; /* Ajoute un espacement entre le back playlist et le header */
+}
+
 .playlist-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
   margin-top: 20px;
+  justify-content: flex-start;
+}
+
+.music-card {
+  flex: 0 1 auto;
 }
 </style>

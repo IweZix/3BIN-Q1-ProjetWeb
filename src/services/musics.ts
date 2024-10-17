@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Playlist from '@/types/Playlist';
 
 export const getImage = async (id: String): Promise<any> => {
     try {
@@ -12,11 +13,11 @@ export const getImage = async (id: String): Promise<any> => {
 
 /**
  * Get the user's playlists
- * @returns {Promise<Array<any>>} The user's playlists
+ * @returns {Promise<Playlist>} The user's playlists
  */
-export const getPlaylistUser = async (id: Number): Promise<Array<any>> => {
+export const getPlaylistUser = async (id: Number): Promise<Playlist> => {
   try {
-    const response = await axios.get<Array<any>>(`/api/playlists/${id}`, {
+    const response = await axios.get<Playlist>(`/api/playlists/${id}`, {
         headers: {
             Authorization: `${localStorage.getItem('token')}`
         }

@@ -17,7 +17,7 @@ export default defineComponent({
       required: true,
     },
     artist: {
-      type: String,
+      type: Object as () => { name: string, href: string },
       required: true,
     },
     backContent: {
@@ -28,63 +28,84 @@ export default defineComponent({
 });
 </script>
 
- 
- <template>
-    <div class="music-card">
-      <vue-flip :active-click="true" width="200px" height="300px">
-        <!-- Face avant de la carte -->
-        <template v-slot:front>
-          <div class="card-front">
-            <img :src="image" alt="Album cover" class="album-image" />
+<template>
+  <div class="music-card">
+    <vue-flip :active-click="true" width="100%" height="auto">
+      <!-- Face avant de la carte -->
+      <template v-slot:front>
+        <div class="card-front">
+          <img :src="image" alt="Album cover" class="album-image" />
+          <div class="card-info">
             <h3 class="title">{{ title }}</h3>
-            <p class="artist">{{ artist }}</p>
+            <p class="artist">{{ artist.name }}</p>
           </div>
-        </template>
-        
-        <!-- Face arrière de la carte -->
-        <template v-slot:back>
-          <div class="card-back">
-            <h4>More Info</h4>
-            <p>{{ backContent }}</p>
-          </div>
-        </template>
-      </vue-flip>
-    </div>
-  </template>
+        </div>
+      </template>
 
-  <style scoped>
-  .music-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .card-front, .card-back {
-    text-align: center;
-    padding: 10px;
-  }
-  
-  .album-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .title {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  .artist {
-    font-size: 14px;
-    color: gray;
-  }
-  
-  .card-back {
-    background-color: #f3f3f3;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  </style>
-  
+      <!-- Face arrière de la carte -->
+      <template v-slot:back>
+        <div class="card-back">
+          <h3 class="infoBack">More Info</h3>
+          <h5 class="album">Album: {{ backContent }}</h5>
+          <p class="hrefBack">{{ artist.href }}</p>
+        </div>
+      </template>
+    </vue-flip>
+  </div>
+</template>
+
+<style scoped>
+.card-front {
+  display: flex; 
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #01A98D;
+  box-shadow: 0 2px 8px rgba(0, 0, 0.2, 0.1);
+}
+
+.album-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.card-info {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  flex-grow: 1; 
+  text-align: center; 
+}
+
+.title {
+  color: #038A91;
+  font-size: 24px;
+  font-weight: bold; 
+  margin: 0;
+}
+
+.artist {
+  font-size: 18px; 
+  font-weight: bold; 
+  color: #038A91; 
+}
+
+.card-back {
+  background-color: #038A91;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center; 
+}
+
+.infoBack {
+  color: #01A98D;
+  font-weight: bold;
+}
+
+.album,
+.hrefBack {
+  color: #01A98D;
+}
+</style>

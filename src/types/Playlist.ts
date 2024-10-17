@@ -1,12 +1,13 @@
 import Song from './Song';
 
-class Playlist {
-    id: Number;
-    userId: Number;
-    name: String;
-    songs: Array<Song>;
 
-    constructor(id: Number, userId: Number, name: String, songs: Array<Song>) {
+class Playlist {
+    id: number;
+    userId: number;
+    name: string;
+    songs: Song[];
+
+    constructor(id: number, userId: number, name: string, songs: Song[]) {
         this.id = id;
         this.userId = userId;
         this.name = name;
