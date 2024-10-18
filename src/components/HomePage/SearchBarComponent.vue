@@ -1,6 +1,6 @@
 <script lang="ts">
 import router from '@/router/router';
-import { searchHomepage } from '@/services/searchHomepage';
+
 import { searchHomepage } from '@/services/searchHomepage';
 
 export default {
@@ -12,7 +12,7 @@ export default {
       formData: {
         name: '',
       },
-      errors: {} as Error,
+      errors: {} as Error ,
     };
   },
   methods: {
@@ -112,48 +112,3 @@ export default {
 </style>
 
 
-<style scoped>
-#name {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #000000;
-  border-radius: 4px;
-  box-sizing: content-box;
-}
-
-.form-container {
-  width: 300px;
-  margin: 0 auto;
-}
-
-.error {
-  color: red;
-  font-size: 12px;
-}
-
-.submit-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #319f35;
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-  background-color: #45a049;
-}
-
-.submit-button:active {
-  background-color: #388e3c;
-}
-
-.submit-button:disabled {
-  background-color: #ddd;
-  cursor: not-allowed;
-}
-</style>
