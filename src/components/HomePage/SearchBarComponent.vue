@@ -11,7 +11,7 @@ export default {
       formData: {
         name: '',
       },
-      errors: {},
+      errors: {} as Error,
     };
   },
   methods: {
@@ -31,9 +31,7 @@ export default {
         console.log(musicFound);
         
 
-      } else {
-        console.log("Validation failed:", this.errors);
-      }
+      } 
     }
   }
 };
