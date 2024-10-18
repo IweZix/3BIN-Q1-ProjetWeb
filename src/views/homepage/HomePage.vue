@@ -33,18 +33,7 @@ export default {
   async mounted() {
     renderPageTitle('Melodiq');
   },
-
-  /**
-   * Methods of the component
-   */
-  methods: {
-    /**
-     * Increment the integer value
-     */
-    incrementInteger() {
-      this.integer++;
-    }
-  }
+ 
 };
 </script>
 
