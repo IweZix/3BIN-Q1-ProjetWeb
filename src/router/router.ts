@@ -9,6 +9,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/homepage/HomePage.vue';
 import About from '../views/AboutPage.vue';
 import NotFound from '@/views/NotFoundPage.vue';
+import Music from '@/views/MusicPage.vue';
+
 import Login from '@/views/auth/LoginPage.vue';
 import Register from '@/views/auth/RegisterPage.vue';
 import Playlists from '@/views/playlist/PlaylistsPage.vue';
@@ -59,6 +61,14 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound
+  },
+  /**
+   * Define music route
+   */
+  {
+    path: '/playlists/:id',
+    name: 'Music',
+    component: Music
   }
   /**
    * 
