@@ -12,7 +12,7 @@ export default {
       formData: {
         name: '',
       },
-      errors: {} as Error ,
+      errors: {} as Error,
     };
   },
   methods: {
