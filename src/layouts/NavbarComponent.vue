@@ -54,12 +54,14 @@ export default {
                 <router-link to="/playlists" class="nav-link">Playlists</router-link>
               </li>
             </ul>
-          </div>
-          <div>
-            <router-link to="/user" class="btn btn-primary">{{ username }}</router-link>
-          </div>
-          <div>
-            <router-link to="/logout" class="btn btn-danger">Logout</router-link>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <router-link to="/user" class="btn btn-primary">{{ username }}</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/logout" class="btn btn-danger">Logout</router-link>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
@@ -90,9 +92,11 @@ export default {
                 <router-link to="/about" class="nav-link">About</router-link>
               </li>
             </ul>
-          </div>
-          <div>
-            <router-link to="/login" class="btn btn-primary">Login</router-link>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <div>
+                <router-link to="/login" class="btn btn-primary">Login</router-link>
+              </div>
+            </ul>
           </div>
         </div>
       </nav>
