@@ -1,12 +1,13 @@
+import Artist from './Artist';
+
 class Song {
-    id: Number;
-    title: String;
-    artist: String;
-    album: String;
-    image: String;
+    id: number;
+    title: string;
+    artist: Artist[];
+    album: string;
+    image: string;
     
-  
-    constructor(id: Number, title: String, artist: String, album: String, image: String) {
+    constructor(id: number, title: string, artist: Artist[], album: string, image: string) {
         this.id = id;
         this.title = title;
         this.artist = artist;
