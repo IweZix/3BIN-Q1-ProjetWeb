@@ -81,7 +81,7 @@ export default {
         :key="song.id" 
         :image="song.image"  
         :title="song.title" 
-        :artist="song.artist[0]" 
+        :artist="song.artist" 
         :backContent="song.album"
       />
     </div>

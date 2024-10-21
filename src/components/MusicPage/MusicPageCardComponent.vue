@@ -17,7 +17,7 @@ export default defineComponent({
       required: true,
     },
     artist: {
-      type: Object as () => { name: string, href: string },
+      type: String,
       required: true,
     },
     backContent: {
@@ -37,7 +37,7 @@ export default defineComponent({
           <img :src="image" alt="Album cover" class="album-image" />
           <div class="card-info">
             <h3 class="title">{{ title }}</h3>
-            <p class="artist">{{ artist.name }}</p>
+            <p class="artist">{{ artist }}</p>
           </div>
         </div>
       </template>
@@ -47,7 +47,6 @@ export default defineComponent({
         <div class="card-back">
           <h3 class="infoBack">More Info</h3>
           <h5 class="album">Album: {{ backContent }}</h5>
-          <p class="hrefBack">{{ artist.href }}</p>
         </div>
       </template>
     </vue-flip>

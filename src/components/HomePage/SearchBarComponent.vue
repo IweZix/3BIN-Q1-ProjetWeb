@@ -1,6 +1,7 @@
 <script lang="ts">
 import router from '@/router/router';
 import { searchHomepage } from '@/services/searchHomepage';
+import Playlist from '@/types/Playlist';
 
 export default {
   /**
@@ -13,6 +14,12 @@ export default {
       },
       errors: {} as Error,
     };
+  },
+  props: {
+    listMusic: {
+      type: Array ,
+      required: true,
+    },
   },
   methods: {
     validateForm() {
@@ -27,8 +34,9 @@ export default {
       if (this.validateForm()) {
         // Submit form logic (e.g., send data to API)
         console.log("Form submitted:", this.formData.name);
-        const musicFound= await searchHomepage(this.formData.name);
+        const musicFound = await searchHomepage(this.formData.name);
         console.log(musicFound);
+        this.$emit('update:listMusic', musicFound);
         
 
       } 
@@ -39,17 +47,6 @@ export default {
 
 
 <template>
-  <div class="form-container">
-    <form @submit.prevent="submitForm">
-      <div>
-        <input type="text" id="name" placeholder="Enter the name of the song or the artist:" v-model="formData.name" />
-      </div>
-      <div>
-        <span v-if="errors.name" class="error ">{{ errors.name }}</span>
-      </div>
-      <button class="submit-button" type="submit">Submit</button>
-    </form>
-  </div>
   <div class="form-container">
     <form @submit.prevent="submitForm">
       <div>
