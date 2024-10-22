@@ -32,6 +32,7 @@ export default {
     return {
       user: {} as AuthenticatedUser,
       playlist: {} as Playlist,
+      isLoading: true as boolean,
     };
   },
 
@@ -56,6 +57,7 @@ export default {
       this.user = await verify(localStorage.getItem('token') || '');
       await this.getPlaylistUser(this.playlistId);
       console.log('Playlist:', this.playlist); // doit être supprimé après pour la version finale
+      this.isLoading = false;
     } catch (error) {
       console.error('Error fetching playlist:', error);
     }
@@ -65,25 +67,31 @@ export default {
 
 <template>
   <div class="music-page">
-    <div class="header-container">
-      <MusicPageBackPlayListComponent class="back-playlist" />
-      <MusicPageHeaderComponent 
-        :imageSrc="playlist.songs && playlist.songs.length > 0 ? playlist.songs[playlist.songs.length - 1].image : ''"
-        :name="playlist.name"
-        :nbMusic="playlist.songs ? playlist.songs.length : 0"
-        class="music-header"
-      />
+    <div v-if="isLoading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+      </div>
     </div>
+    <div v-else>
+      <div class="header-container">
+        <MusicPageBackPlayListComponent class="back-playlist" />
+        <MusicPageHeaderComponent 
+          :imageSrc="playlist.songs && playlist.songs.length > 0 ? playlist.songs[playlist.songs.length - 1].image : ''"
+          :name="playlist.name"
+          :nbMusic="playlist.songs ? playlist.songs.length : 0"
+          class="music-header"
+        />
+      </div>
 
-    <div class="playlist-grid">
-      <MusicPageCardComponent 
-        v-for="song in playlist.songs" 
-        :key="song.id" 
-        :image="song.image"  
-        :title="song.title" 
-        :artist="song.artist[0]" 
-        :backContent="song.album"
-      />
+      <div class="playlist-grid">
+        <MusicPageCardComponent 
+          v-for="song in playlist.songs" 
+          :key="song.id" 
+          :image="song.image"  
+          :title="song.title" 
+          :artist="song.artist[0]" 
+          :backContent="song.album"
+        />
+      </div>
     </div>
   </div>
 </template>
