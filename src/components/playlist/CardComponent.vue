@@ -35,7 +35,7 @@ export default {
     }
   },
   methods: {
-    ButtonHandler: function (playlistKey: string) {
+    ButtonHandler: function (playlistKey: number) {
         router.push({
           name: 'Music',
           params: {
