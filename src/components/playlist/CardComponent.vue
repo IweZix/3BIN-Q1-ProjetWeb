@@ -11,7 +11,7 @@ export default {
   },
   props: {
     id: {
-      type: String,
+      type: [String, null],
       required: true
     },
     title: {
@@ -23,7 +23,7 @@ export default {
       required: true
     },
     playlistKey: {
-      type: String,
+      type: Number,
       required: true
     }
   },
