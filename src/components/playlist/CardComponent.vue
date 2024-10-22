@@ -11,7 +11,7 @@ export default {
   },
   props: {
     id: {
-      type: String,
+      type: [String, null],
       required: true
     },
     title: {
@@ -23,7 +23,7 @@ export default {
       required: true
     },
     playlistKey: {
-      type: String,
+      type: Number,
       required: true
     }
   },
@@ -35,7 +35,7 @@ export default {
     }
   },
   methods: {
-    ButtonHandler: function (playlistKey: string) {
+    ButtonHandler: function (playlistKey: number) {
         router.push({
           name: 'Music',
           params: {
