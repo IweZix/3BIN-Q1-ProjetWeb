@@ -24,7 +24,7 @@ export default {
     try {
       this.user = await verify(localStorage.getItem('token') || '');
       this.playlists = await getAllPlaylists();
-      console.log(this.playlists[1].songs.length);
+      
       
     } catch (error) {
       console.error('fetching data failed');
@@ -54,11 +54,12 @@ export default {
         <div class="row">
               <CardComponent v-for="playlist in playlists"
                 :key="playlist.id"
+                :playlistKey="playlist.id"
                 :id="playlist.songs.length ? playlist.songs[0].id : null"
                 :title="playlist.name"
                 :nbMusic="playlist.songs.length"
               />
-            </div>
+        </div>
       </div>
   </div>
 </template>
