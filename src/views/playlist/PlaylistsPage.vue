@@ -11,7 +11,8 @@ export default {
   data() {
     return {
       user: {} as AuthenticatedUser,
-      playlists: {} as Array<any>
+      playlists: {} as Array<any>,
+      isLoading: true as boolean 
     };
   },
 
@@ -24,8 +25,7 @@ export default {
     try {
       this.user = await verify(localStorage.getItem('token') || '');
       this.playlists = await getAllPlaylists();
-      
-      
+      this.isLoading = false;
     } catch (error) {
       console.error('fetching data failed');
     };
@@ -49,18 +49,29 @@ export default {
   <div class="text-center my-4 title-search">
     <h1>There is your playlists {{ user.username }} </h1>
   </div>
-  <div class="container">
-      <div if="playlists" class="container">
-        <div class="row">
-              <CardComponent v-for="playlist in playlists"
-                :key="playlist.id"
-                :playlistKey="playlist.id"
-                :id="playlist.songs.length ? playlist.songs[0].id : null"
-                :title="playlist.name"
-                :nbMusic="playlist.songs.length"
-              />
+  <div v-if="isLoading" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+    </div>
+  </div>
+  <div v-else class="text-center">
+    <div v-if="playlists.length > 0" class="text-center">
+      <div class="container">
+        <div if="playlists" class="container">
+          <div class="row">
+                <CardComponent v-for="playlist in playlists"
+                  :key="playlist.id"
+                  :playlistKey="playlist.id"
+                  :id="playlist.songs.length ? playlist.songs[0].id : null"
+                  :title="playlist.name"
+                  :nbMusic="playlist.songs.length"
+                />
+          </div>
         </div>
       </div>
+    </div>
+    <div v-else class="text-center">
+      <h1>There is no playlists</h1>
+    </div>
   </div>
 </template>
 
