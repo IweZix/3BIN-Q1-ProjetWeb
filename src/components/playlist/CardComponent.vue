@@ -22,6 +22,10 @@ export default {
       type: Number,
       required: true
     },
+    playlistKey: {
+      type: String,
+      required: true
+    }
   },
   async mounted() {
     if (this.id) {
@@ -31,8 +35,13 @@ export default {
     }
   },
   methods: {
-    ButtonHandler: function (id: String) {
-        console.log('Button clicked with id: ' + id);
+    ButtonHandler: function (playlistKey: String) {
+        router.push({
+          name: 'Music',
+          params: {
+            id: playlistKey
+          }
+        });
     }
   }
 };
@@ -47,7 +56,7 @@ export default {
             <p class="card-apparition">
                 {{ nbMusic }} musics
             </p>
-            <button v-on:click="ButtonHandler(id)" class="btn btn-primary">
+            <button v-on:click="ButtonHandler(playlistKey)" class="btn btn-primary">
                 more
             </button>
       </div>

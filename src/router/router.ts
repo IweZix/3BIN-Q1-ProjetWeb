@@ -50,6 +50,11 @@ const routes = [
     component: Playlists
   },
   {
+    path: '/playlists/:id',
+    name: 'Music',
+    component: Music
+  },
+  {
     path: '/logout',
     name: 'Logout',
     component : Logout
@@ -61,14 +66,6 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound
-  },
-  /**
-   * Define music route
-   */
-  {
-    path: '/playlists/:id',
-    name: 'Music',
-    component: Music
   }
 ];
 
