@@ -99,7 +99,7 @@ export default {
           <div class="col-md-3 mb-4">
             <vue-flip :active-click="true" width="100%" height="95%">
               <template v-slot:front>
-                <div class=" card add-playlist-card card-body d-flex justify-content-center align-items-center">
+                <div class="add-playlist-card card-body d-flex justify-content-center align-items-center">
                   <div class="card-body d-flex justify-content-center align-items-center">
                     <h1>+</h1>
                   </div>
