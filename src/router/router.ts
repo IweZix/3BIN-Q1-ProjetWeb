@@ -6,7 +6,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 /**
  * Import views
  */
-import Home from '../views/HomePage.vue';
+import Home from '../views/homepage/HomePage.vue';
 import About from '../views/AboutPage.vue';
 import NotFound from '@/views/NotFoundPage.vue';
 import Music from '@/views/MusicPage.vue';
@@ -67,6 +67,9 @@ const routes = [
     name: 'NotFound',
     component: NotFound
   }
+  /**
+   * 
+   */
 ];
 
 /**

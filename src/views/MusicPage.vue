@@ -81,17 +81,15 @@ export default {
           class="music-header"
         />
       </div>
-
-      <div class="playlist-grid">
-        <MusicPageCardComponent 
-          v-for="song in playlist.songs" 
-          :key="song.id" 
-          :image="song.image"  
-          :title="song.title" 
-          :artist="song.artist[0]" 
-          :backContent="song.album"
-        />
-      </div>
+    <div class="playlist-grid">
+      <MusicPageCardComponent 
+        v-for="song in playlist.songs" 
+        :key="song.id" 
+        :image="song.image"  
+        :title="song.title" 
+        :artist="song.artist" 
+        :backContent="song.album"
+      />
     </div>
   </div>
 </template>
