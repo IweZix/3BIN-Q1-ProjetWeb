@@ -68,7 +68,8 @@ export default {
 <template>
   <div class="music-page">
     <div v-if="isLoading" class="text-center">
-      <div class="spinner-border text-primary" role="status"></div>
+      <div class="spinner-border text-primary" role="status">
+</div>
     </div>
     <div v-else>
       <div class="header-container">
