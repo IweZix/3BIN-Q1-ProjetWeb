@@ -5,6 +5,9 @@ import { verify } from '@/services/auths';
 import { getAllPlaylists } from '@/services/playlists';
 import AuthenticatedUser from '@/types/AuthenticatedUser';
 import VanillaTilt from '@/scripts/vanilla-tilt';
+import { VueFlip } from 'vue-flip';
+import InputComponent from '@/components/Auth/InputComponent.vue';
+import { create } from '@/services/playlists';
 
 export default {
   name: 'PlaylistsPage',
@@ -12,12 +15,16 @@ export default {
     return {
       user: {} as AuthenticatedUser,
       playlists: {} as Array<any>,
-      isLoading: true as boolean 
+      isLoading: true as boolean,
+      isModalVisible: false,
+      playlistName: '' as string
     };
   },
 
   components: {
-    CardComponent
+    CardComponent,
+    VueFlip,
+    InputComponent
   },
 
   async mounted() {
@@ -41,6 +48,28 @@ export default {
         });
       }
     });
+  },
+
+  methods: {
+    showCreatePlaylistModal() {
+      this.isModalVisible = true;
+    },
+    async handlePlaylistCreated() {
+      if (!this.playlistName) {
+        return;
+      }
+
+      const response = await create(this.playlistName);
+      if (response) {
+        this.playlists.push(response);
+        this.playlistName = '';
+        this.isModalVisible = false;
+      }
+
+    },
+    updatePlaylistName(value: string) {
+      this.playlistName = value;
+    }
   }
 };
 </script>
@@ -56,16 +85,42 @@ export default {
   <div v-else class="text-center">
     <div v-if="playlists.length > 0" class="text-center">
       <div class="container">
-        <div if="playlists" class="container">
-          <div class="row">
-                <CardComponent v-for="playlist in playlists"
-                  :key="playlist.id"
-                  :playlistKey="playlist.id"
-                  :id="playlist.songs.length ? playlist.songs[0].id : null"
-                  :title="playlist.name"
-                  :nbMusic="playlist.songs.length"
-                />
+        <div class="row">
+          <div class="col-md-3 mb-4">
+            <vue-flip :active-click="true" width="100%" height="95%">
+              <template v-slot:front>
+                <div class="add-playlist-card card-body d-flex justify-content-center align-items-center">
+                  <div class="card-body d-flex justify-content-center align-items-center">
+                    <h1>+</h1>
+                  </div>
+                </div>
+              </template>
+              <template v-slot:back>
+                <div class="add-playlist-card card-body d-flex justify-content-center align-items-center">
+                  <div class="card-body d-flex justify-content-center align-items-center">
+                    <InputComponent 
+                      placeholder="Playlist name" 
+                      v-model="playlistName" 
+                      :method="updatePlaylistName"
+                      :password="false"
+                      @click.stop
+                    />
+                  </div>
+                  <div>
+                    <button @click="handlePlaylistCreated" class="btn btn-primary">Create</button>
+                  </div>
+                </div>
+              </template>
+            </vue-flip>
           </div>
+          <CardComponent v-for="playlist in playlists"
+            :key="playlist.id"
+            :playlistKey="playlist.id"
+            :id="playlist.songs.length ? playlist.songs[0].id : null"
+            :title="playlist.name"
+            :nbMusic="playlist.songs.length"
+            class="col-md-3 mb-4"
+          />
         </div>
       </div>
     </div>
@@ -73,6 +128,18 @@ export default {
       <h1>There is no playlists</h1>
     </div>
   </div>
+  <CreatePlaylistModal :show="isModalVisible" @playlist-created="handlePlaylistCreated" @close="isModalVisible = false" />
 </template>
 
-<style></style>
+<style scoped>
+.add-playlist-card {
+  cursor: pointer;
+  border: 2px dashed #007bff;
+  height: 100%;
+  min-height: 440px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem; /* Ajustez la taille de la police selon vos besoins */
+}
+</style>
