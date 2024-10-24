@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+/**
+ * Get all playlists
+ * @returns {Promise<Array<any>>} - All playlists
+ */
 export const getAllPlaylists = async (): Promise<Array<any>> => {
     try {
         const response = await axios.get<Array<any>>('/api/playlists/all', {
@@ -14,6 +18,11 @@ export const getAllPlaylists = async (): Promise<Array<any>> => {
     }
 }
 
+/**
+ * Create a new playlist
+ * @param {string} name - The name of the playlist
+ * @returns {Promise<any>} - The created playlist
+ */
 export const create = async (name: string): Promise<any> => {
     const token = localStorage.getItem('token');
     try {
