@@ -51,9 +51,15 @@ export default {
   },
 
   methods: {
+    /**
+     * Show the create playlist modal
+     */
     showCreatePlaylistModal() {
       this.isModalVisible = true;
     },
+    /**
+     * Handle the playlist creation
+     */
     async handlePlaylistCreated() {
       if (!this.playlistName) {
         return;
@@ -67,6 +73,10 @@ export default {
       }
 
     },
+    /**
+     * Update the playlist name
+     * @param {string} value - The new playlist name
+     */
     updatePlaylistName(value: string) {
       this.playlistName = value;
     }
@@ -100,7 +110,7 @@ export default {
                   <div class="card-body d-flex justify-content-center align-items-center">
                     <InputComponent 
                       placeholder="Playlist name" 
-                      v-model="playlistName" 
+                      vmodel="playlistName" 
                       :method="updatePlaylistName"
                       :password="false"
                       @click.stop
@@ -128,7 +138,6 @@ export default {
       <h1>There is no playlists</h1>
     </div>
   </div>
-  <CreatePlaylistModal :show="isModalVisible" @playlist-created="handlePlaylistCreated" @close="isModalVisible = false" />
 </template>
 
 <style scoped>
