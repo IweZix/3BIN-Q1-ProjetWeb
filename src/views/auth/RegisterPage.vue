@@ -65,20 +65,23 @@ export default {
 </script>
 
 <template>
+  <div class="regInBody">
   <div class="d-flex flex-column align-items-center">
-    <h2>Register</h2>
+    <h1>Register</h1>
     <div>
       <InputComponent 
         placeholder="Username" 
         vmodel="username" 
         :method="updateUsername" 
       />
+      <a>Password</a>
       <InputComponent 
         placeholder="Password" 
         vmodel="password" 
         :method="updatePassword"
         :password="true"
       />
+      <a>ConfirmPassword</a>
       <InputComponent 
         placeholder="Confirm Password" 
         vmodel="confirmPassword" 
@@ -98,19 +101,27 @@ export default {
       />
     </div>
   </div>
+  </div>
 </template>
 
 <style scoped>
+
+.regInBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
 .custom-button {
-    width: 230px;
-    margin: 10px 0;
+    width: 250px;
+    margin: 10px 20px;
     padding: 10px 20px;
-    background-color: #4e73df;
+    background-color: #03C490;
     color: white;
     font-size: 16px;
     font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: 20px;
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease;
