@@ -36,4 +36,15 @@ export default {
   <button @click="goToHomePage" class="btn btn-primary">Go to Home Page</button>
 </template>
 
-<style></style>
+<style scoped>
+
+.btn {
+  background-color: #01A98D;
+  border: none;
+}
+
+.btn-primary:hover {
+    background-color: #06708E; 
+}
+
+</style>

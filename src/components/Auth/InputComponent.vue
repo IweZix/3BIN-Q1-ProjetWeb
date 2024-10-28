@@ -44,6 +44,7 @@ export default {
         />
     </div>
     <div v-else>
+      <a>Username</a>
         <input
             type="text"
             :placeholder="placeholder"
@@ -61,7 +62,7 @@ export default {
     padding: 10px 15px; /* Espacement interne pour rendre l'input plus confortable */
     border: 1px solid #ddd; /* Bordure grise claire */
     border-radius: 6px; /* Coins légèrement arrondis */
-    background-color: #f8f9fa; /* Fond gris clair */
+    background-color: #262727; /* Fond gris clair */
     font-size: 16px; /* Taille du texte */
     color: #6c757d; /* Couleur du texte grise */
     outline: none; /* Retire le contour par défaut lors du focus */
@@ -69,7 +70,7 @@ export default {
 }
 
 .custom-input::placeholder {
-    color: #adb5bd; /* Couleur du placeholder grise plus claire */
+    color: white;
 }
 
 .custom-input:focus {

@@ -42,22 +42,21 @@ export default {
 
 <style scoped>
 .custom-button-white {
-    width: 230px;
-    padding: 12px 24px; 
-    background-color: white;
-    color: #333; 
+    width: 210px;
+    padding: 8px; 
+    background-color: #03C490;;
+    color: white; 
     font-size: 18px;
     font-weight: bold;
     border: 1px solid lightgray; 
-    border-radius: 8px; 
+    border-radius: 20px; 
     cursor: pointer; 
     text-align: center; 
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .custom-button-white:hover {
-    background-color: #f1f1f1; 
-    color: #4e73df; 
+    background-color: #06708E; 
 }
 </style>
 

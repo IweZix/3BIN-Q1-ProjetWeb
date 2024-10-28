@@ -46,7 +46,6 @@ export default {
 </script>
 
 <template>
-  
   <div class="text-center my-4 title-search">
     <h1>Melodiq your plateform of playlist </h1>
     <SearchBarComponent
@@ -71,7 +70,12 @@ export default {
   </div>
 </template>
 
-<style>
+
+
+
+
+<style scoped >
+
 
 .back-playlist {
   margin-right: 20px; /* Ajoute un espacement entre le back playlist et le header */
@@ -88,4 +92,7 @@ export default {
 .music-card {
   flex: 0 1 auto;
 }
+
+
+
 </style>

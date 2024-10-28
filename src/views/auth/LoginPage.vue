@@ -59,14 +59,16 @@ export default {
 </script>
 
 <template>
+  <div class="logInBody">
   <div class="d-flex flex-column align-items-center">
-    <h2>Sign in</h2>
+    <h1>Sign in</h1>
     <div>
       <InputComponent 
         placeholder="Username" 
         vmodel="username" 
         :method="updateUsername" 
       />
+    
       <InputComponent 
         placeholder="Password" 
         vmodel="password" 
@@ -81,32 +83,40 @@ export default {
     <div class="d-flex flex-column align-items-center">
       <h6>Don't have a Melodiq account ? </h6>
       <RedirectButtonComponent 
-        text="Create new account" 
+        text="Register" 
         route="Register"
       />
     </div>
   </div>
+  </div>
 </template>
 
 <style scoped>
+.logInBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
 .custom-button {
-    width: 230px; /* Ou définir une largeur spécifique comme 150px */
-    margin: 10px 0;
+    width: 250px; /* Ou définir une largeur spécifique comme 150px */
+    margin: 10px 20px;
     padding: 10px 20px;
-    background-color: #4e73df;
+    background-color: #03C490;
     color: white;
     font-size: 16px;
     font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: 20px;
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease;
+    
 }
 
 
 .custom-button:hover {
-    background-color: #375a7f; /* Couleur du bouton lors du survol */
+    background-color: #375a7f; 
 }
 </style>
 
