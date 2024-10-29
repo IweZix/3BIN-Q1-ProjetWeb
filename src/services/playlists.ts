@@ -40,3 +40,21 @@ export const create = async (name: string): Promise<any> => {
         throw new Error('An error occurred while creating the playlist');
     }
 }
+
+export const addToPlaylist = async (idPlaylist: number,musickey: string): Promise<any> => {
+    const token = localStorage.getItem('token');
+    try {
+        const response = await axios.post('/api/playlists/add/id', 
+            {  "idPLaylist":idPlaylist,"idMusic":musickey },
+            {
+                headers: {
+                    Authorization: token
+                }
+            }
+        );
+
+        return response.data;
+    } catch (error) {
+        throw new Error('An error occurred while creating the playlist');
+    }
+}

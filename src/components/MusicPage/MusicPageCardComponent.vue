@@ -1,4 +1,7 @@
 <script lang="ts">
+import { addToPlaylist } from '@/services/playlists';
+import Playlist from '@/types/Playlist';
+import { log } from 'console';
 import { defineComponent } from 'vue';
 import { VueFlip } from 'vue-flip';
 
@@ -24,7 +27,52 @@ export default defineComponent({
       type: String,
       default: 'More details about this album or artist.',
     },
-  },
+    addtoPlaylist:{
+      type: Boolean,
+      default: false,
+    },
+    idMusic: {
+      type: String ,
+      default: '',
+      required: false,},
+    playlists: {
+      type: Array<Playlist>,
+      default: {},
+    }},
+  
+      data() {
+    return {
+      isModalOpen: false,
+      selectedPlaylist: { id: null, name: '' } ,
+      currentMusicKey: '',
+    }},
+    methods:{
+    openModal(musicKey: string ) {
+      this.currentMusicKey = musicKey; // Set the current music key
+      this.isModalOpen = true; // Open the modal
+    },
+    closeModal() {
+      this.isModalOpen = false;
+      this.selectedPlaylist = { id: null, name: '' };
+      this.currentMusicKey = '';
+    },
+     async addToSelectedPlaylist() {
+      if (this.selectedPlaylist) {
+        if (this.selectedPlaylist.id) {
+          try {
+            const response = await addToPlaylist(this.selectedPlaylist.id, this.currentMusicKey);
+            if (response.status == 201) {
+              alert(`Added to ${this.selectedPlaylist.name}`);
+              this.closeModal();
+            }
+          } catch (error) {
+            alert('An error occurred');
+          }
+        } 
+      } else {
+        console.error('No playlist selected');
+      }},
+      }
 });
 </script>
 
@@ -39,6 +87,10 @@ export default defineComponent({
             <h3 class="title">{{ title }}</h3>
             <p class="artist">{{ artist }}</p>
           </div>
+           <!-- Button to open the modal -->
+          <button v-if="addtoPlaylist" @click="openModal(idMusic)" class="btn btn-primary">
+            Add music to a playlist
+          </button>
         </div>
       </template>
 
@@ -51,8 +103,24 @@ export default defineComponent({
       </template>
     </vue-flip>
   </div>
-</template>
 
+
+  <!-- Modal for selecting a playlist -->
+    <div v-if="isModalOpen" class="modal-overlay" @click.self="closeModal">
+      <div class="modal-content">
+        <h4>Select a Playlist</h4>
+        <select v-model="selectedPlaylist" class="form-select">
+          <option v-for="playlist in playlists" 
+          :key="playlist.id" 
+          :value="{ id: playlist.id, name: playlist.name, musicKey: currentMusicKey }">
+            {{ playlist.name }}
+          </option>
+        </select>
+        <button @click="addToSelectedPlaylist" class="btn btn-primary mt-2">Add</button>
+        <button @click="closeModal" class="btn btn-secondary mt-2">Cancel</button>
+      </div>
+    </div>
+</template>
 <style scoped>
 .card-front {
   display: flex; 
