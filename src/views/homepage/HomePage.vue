@@ -30,6 +30,7 @@ export default {
       
     }
   },
+
   /**
    * Data of the component
    */
@@ -42,8 +43,6 @@ export default {
       isLoading: true as boolean,
     };
   },
-
-
 
   /**
    * Mounted lifecycle hook
@@ -65,56 +64,62 @@ export default {
 </script>
 
 <template>
-  <div class="text-center my-4 title-search">
-    <h1>Melodiq your plateform of playlist </h1>
-    <SearchBarComponent
-       :listMusic="listMusic"
-      @update:listMusic="updateMusicList"
-    />
-    <div v-if="musicList" class="container">
-      
-      <div class="row">
+  <div class="home-container">
+    <div class="content-wrapper text-center my-4 title-search">
+      <h1>Melodiq your platform of playlist</h1>
+      <SearchBarComponent
+        :listMusic="listMusic"
+        @update:listMusic="updateMusicList"
+      />
+      <div v-if="musicList.length" class="music-list-container">
         <div class="playlist-grid">
-        <MusicPageCardComponent
-         v-for="music in musicList"
-          :key="music.id"
-          :idMusic="music.id"
-          :title="music.title"
-          :artist="music.artist"
-          :image="music.image"
-          :backContent="music.album"
-          :addtoPlaylist=!!user.username
-          :playlists="playlist"
-        />
+          <MusicPageCardComponent
+            v-for="music in musicList"
+            :key="music.id"
+            :idMusic="music.id"
+            :title="music.title"
+            :artist="music.artist"
+            :image="music.image"
+            :backContent="music.album"
+            :addtoPlaylist="!!user.username"
+            :playlists="playlist"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<style scoped>
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
+.content-wrapper {
+  max-width: 800px; /* Définir une largeur maximale pour le conteneur */
+  width: 100%;
+}
 
-
-
-<style scoped >
-
-
-.back-playlist {
-  margin-right: 20px; /* Ajoute un espacement entre le back playlist et le header */
+.music-list-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .playlist-grid {
   display: flex;
   flex-direction: column;
-  gap: 160px;
+  gap: 20px;
   margin-top: 20px;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
 }
 
 .music-card {
   flex: 0 1 auto;
 }
-
-
 
 </style>
