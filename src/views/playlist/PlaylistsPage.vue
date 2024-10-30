@@ -93,8 +93,7 @@ export default {
     </div>
   </div>
   <div v-else class="text-center">
-    <div v-if="playlists.length > 0" class="text-center">
-      <div class="container">
+      <div class="container text-center">
         <div class="row">
           <div class="col-md-3 mb-4">
             <vue-flip :active-click="true" width="100%" height="95%">
@@ -132,10 +131,10 @@ export default {
         </div>
       </div>
     </div>
-    <div v-else class="text-center">
-      <h1>There is no playlists</h1>
+    <div v-if="playlists.length==0" class="text-center">
+      <h1>Oops no playlist found </h1> 
+       <h1> Try to add a new one</h1>      
     </div>
-  </div>
 </template>
 
 <style scoped>
