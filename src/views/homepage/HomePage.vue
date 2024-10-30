@@ -5,7 +5,6 @@
 import { renderPageTitle } from '@/utils/render/render';
 import SearchBarComponent from '@/components/HomePage/SearchBarComponent.vue';
 import MusicPageCardComponent from '@/components/MusicPage/MusicPageCardComponent.vue';
-import InputComponent from '@/components/Auth/InputComponent.vue';
 import AuthenticatedUser from '@/types/AuthenticatedUser';
 import Playlist from '@/types/Playlist';
 import { verify } from '@/services/auths';
@@ -66,83 +65,56 @@ export default {
 </script>
 
 <template>
-  <div class="homeBody">
-    <div class="text-center my-4 title-search">
-      <h1>Melodiq your plateform of playlist </h1>
-      <SearchBarComponent
-        :listMusic="listMusic"
-        @update:listMusic="updateMusicList"
-      />
-      <div v-if="musicList" class="container">
-        <div class="row">
-          <div class="playlist-grid">
-            <MusicPageCardComponent
-              v-for="music in musicList"
-              :key="music.id"
-              :idMusic="music.id"
-              :title="music.title"
-              :artist="music.artist"
-              :image="music.image"
-              :backContent="music.album"
-              :addtoPlaylist=!!user.username
-              :playlists="playlist"
-            />
-          </div>
+  <div class="text-center my-4 title-search">
+    <h1>Melodiq your plateform of playlist </h1>
+    <SearchBarComponent
+       :listMusic="listMusic"
+      @update:listMusic="updateMusicList"
+    />
+    <div v-if="musicList" class="container">
+      
+      <div class="row">
+        <div class="playlist-grid">
+        <MusicPageCardComponent
+         v-for="music in musicList"
+          :key="music.id"
+          :idMusic="music.id"
+          :title="music.title"
+          :artist="music.artist"
+          :image="music.image"
+          :backContent="music.album"
+          :addtoPlaylist=!!user.username
+          :playlists="playlist"
+        />
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-.homeBody {
+
+
+
+
+<style scoped >
+
+
+.back-playlist {
+  margin-right: 20px; /* Ajoute un espacement entre le back playlist et le header */
+}
+
+.playlist-grid {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3%;
-}
-
-.custom-button {
-  width: 250px; /* Ou définir une largeur spécifique comme 150px */
-  margin: 10px 20px;
-  padding: 10px 20px;
-  background-color: #03C490;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-
-.custom-button:hover {
-  background-color: #375a7f; 
-}
-
-.text-center {
-  text-align: center;
-}
-
-.my-4 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.title-search {
-  margin-top: 20px;
-}
-
-.d-flex {
-  display: flex;
-}
-
-.flex-column {
   flex-direction: column;
+  gap: 160px;
+  margin-top: 20px;
+  justify-content: flex-start;
 }
 
-.align-items-center {
-  align-items: center;
+.music-card {
+  flex: 0 1 auto;
 }
+
+
+
 </style>
