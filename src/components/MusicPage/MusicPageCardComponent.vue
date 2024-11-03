@@ -1,7 +1,6 @@
 <script lang="ts">
 import { addToPlaylist } from '@/services/playlists';
 import Playlist from '@/types/Playlist';
-import { log } from 'console';
 import { defineComponent } from 'vue';
 import { VueFlip } from 'vue-flip';
 
@@ -78,7 +77,7 @@ export default defineComponent({
 
 <template>
   <div class="music-card">
-    <vue-flip :active-click="true" width="100%" height="auto">
+    <vue-flip :active-click="true" width="100%" max-width=150px height="auto">
       <!-- Face avant de la carte -->
       <template v-slot:front>
         <div class="card-front">
@@ -104,7 +103,6 @@ export default defineComponent({
     </vue-flip>
   </div>
 
-
   <!-- Modal for selecting a playlist -->
     <div v-if="isModalOpen" class="modal-overlay" @click.self="closeModal">
       <div class="modal-content">
@@ -121,12 +119,18 @@ export default defineComponent({
       </div>
     </div>
 </template>
+
 <style scoped>
+.music-card {
+  width: 350px;
+  height: 150px;
+}
+
 .card-front {
   display: flex; 
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #01A98D;
+  background-color: #06708E;
   box-shadow: 0 2px 8px rgba(0, 0, 0.2, 0.1);
 }
 
@@ -138,6 +142,14 @@ export default defineComponent({
   margin-right: 20px;
 }
 
+.card-back {
+  width: 350px;
+  height: 150px;
+  background-color: #038A91;
+  padding: 20px;
+  text-align: center;
+}
+
 .card-info {
   display: flex; 
   flex-direction: column; 
@@ -147,16 +159,16 @@ export default defineComponent({
 }
 
 .title {
-  color: #038A91;
-  font-size: 24px;
-  font-weight: bold; 
+  color: #033235;
+  font-size: 20px;
+  font-weight: bold;
   margin: 0;
 }
 
 .artist {
-  font-size: 18px; 
+  font-size: 13px; 
   font-weight: bold; 
-  color: #038A91; 
+  color: #103300; 
 }
 
 .card-back {
@@ -167,12 +179,12 @@ export default defineComponent({
 }
 
 .infoBack {
-  color: #01A98D;
+  color: #F2F3C1;
   font-weight: bold;
 }
 
 .album,
 .hrefBack {
-  color: #01A98D;
+  color: #103300; 
 }
 </style>
