@@ -71,19 +71,23 @@ export default {
         :listMusic="listMusic"
         @update:listMusic="updateMusicList"
       />
-      <div v-if="musicList.length" class="music-list-container">
-        <div class="playlist-grid">
-          <MusicPageCardComponent
-            v-for="music in musicList"
-            :key="music.id"
-            :idMusic="music.id"
-            :title="music.title"
-            :artist="music.artist"
-            :image="music.image"
-            :backContent="music.album"
-            :addtoPlaylist="!!user.username"
-            :playlists="playlist"
-          />
+    </div>
+    <div class="music-wrapper">
+      <div v-if="musicList" class="container">
+        <div class="row">
+          <div class="playlist-grid">
+            <MusicPageCardComponent
+              v-for="music in musicList"
+              :key="music.id"
+              :idMusic="music.id"
+              :title="music.title"
+              :artist="music.artist"
+              :image="music.image"
+              :backContent="music.album"
+              :addtoPlaylist="!!user.username"
+              :playlists="playlist"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -93,6 +97,7 @@ export default {
 <style scoped>
 .home-container {
   display: flex;
+  flex-direction: column; /* Empile les éléments verticalement */
   justify-content: center;
   align-items: center;
   padding: 20px;
@@ -103,23 +108,39 @@ export default {
   width: 100%;
 }
 
-.music-list-container {
+.music-wrapper {
+  width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.music-list-container {
   width: 100%;
+  max-width: 800px; /* Définir une largeur maximale pour le conteneur */
 }
 
 .playlist-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Minimum 1 élément, maximum 3 éléments */
   gap: 20px;
   margin-top: 20px;
-  justify-content: center;
-  align-items: center;
 }
 
 .music-card {
   flex: 0 1 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.my-4 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.title-search {
+  margin-top: 20px;
 }
 
 </style>
