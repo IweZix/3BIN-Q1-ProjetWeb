@@ -88,8 +88,12 @@ export default defineComponent({
           </div>
            <!-- Button to open the modal -->
             <div class="button-addPlaylist">
-            <button v-if="addtoPlaylist" @click="openModal(idMusic)" class="btn btn-primary">
-              Add music to a playlist
+            <button 
+            v-if="addtoPlaylist" 
+            @click="openModal(idMusic)" 
+            class="btn btn-primary">
+              +
+              <span class="tooltip-text">Add to a Playlist</span>
             </button>
             </div>
         </div>
@@ -98,8 +102,8 @@ export default defineComponent({
       <!-- Face arrière de la carte -->
       <template v-slot:back>
         <div class="card-back">
-          <h3 class="infoBack">More Info</h3>
-          <h5 class="album">Album: {{ backContent }}</h5>
+          <p class="infoBack">More Info</p>
+          <p class="album">Album: {{ backContent }}</p>
         </div>
       </template>
     </vue-flip>
@@ -162,16 +166,16 @@ export default defineComponent({
 }
 
 .title {
-  color: #033235;
-  font-size: 20px;
+  color: #0e2425;
+  font-size: 23px;
   font-weight: bold;
   margin: 0;
 }
 
 .artist {
-  font-size: 13px; 
+  font-size: 15px; 
   font-weight: bold; 
-  color: #103300; 
+  color: #023b32; 
 }
 
 .card-back {
@@ -184,6 +188,10 @@ export default defineComponent({
 .infoBack {
   color: #F2F3C1;
   font-weight: bold;
+  font-size: 1.4rem;
+}
+.album {
+  font-size: 1.2rem;
 }
 
 .album,
@@ -197,6 +205,44 @@ export default defineComponent({
   right: -5px; /* Espace à droite */
   padding: 5px 10px; /* Ajuste le padding pour réduire la taille */
   font-size: 12px; /* Diminue la taille du texte */
+  color: #fff;
+}
+
+.btn{
+  background-color: #16be86;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #043e4e;
+}
+
+.btn-secondary {
+  background-color: #F2F3C1;
+  color: #333;
+}
+
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 10%; /* Position en-dessus du bouton */
+  left: -100%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.button-addPlaylist:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }
 
 </style>
