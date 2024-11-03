@@ -87,9 +87,11 @@ export default defineComponent({
             <p class="artist">{{ artist }}</p>
           </div>
            <!-- Button to open the modal -->
-          <button v-if="addtoPlaylist" @click="openModal(idMusic)" class="btn btn-primary">
-            Add music to a playlist
-          </button>
+            <div class="button-addPlaylist">
+            <button v-if="addtoPlaylist" @click="openModal(idMusic)" class="btn btn-primary">
+              Add music to a playlist
+            </button>
+            </div>
         </div>
       </template>
 
@@ -124,6 +126,7 @@ export default defineComponent({
 .music-card {
   width: 350px;
   height: 150px;
+  position: relative;
 }
 
 .card-front {
@@ -187,4 +190,13 @@ export default defineComponent({
 .hrefBack {
   color: #103300; 
 }
+
+.button-addPlaylist {
+  position: absolute; /* Positionne le bouton par rapport au conteneur parent */
+  bottom: -150px; /* Espace en bas */
+  right: -5px; /* Espace à droite */
+  padding: 5px 10px; /* Ajuste le padding pour réduire la taille */
+  font-size: 12px; /* Diminue la taille du texte */
+}
+
 </style>
