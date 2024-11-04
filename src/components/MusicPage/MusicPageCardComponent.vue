@@ -59,11 +59,8 @@ export default defineComponent({
       if (this.selectedPlaylist) {
         if (this.selectedPlaylist.id) {
           try {
-            const response = await addToPlaylist(this.selectedPlaylist.id, this.currentMusicKey);
-            if (response.status == 201) {
-              alert(`Added to ${this.selectedPlaylist.name}`);
-              this.closeModal();
-            }
+            await addToPlaylist(this.selectedPlaylist.id, this.currentMusicKey);
+            this.closeModal();
           } catch (error) {
             alert('An error occurred');
           }
@@ -127,18 +124,18 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.music-card {
-  width: 350px;
-  height: 150px;
-  position: relative;
-}
-
 .card-front {
   display: flex; 
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #06708E;
+  background-color: #01A98D;
   box-shadow: 0 2px 8px rgba(0, 0, 0.2, 0.1);
+}
+
+.music-card {
+  width: 350px;
+  height: 150px;
+  position: relative;
 }
 
 .album-image {
@@ -244,5 +241,4 @@ export default defineComponent({
   visibility: visible;
   opacity: 1;
 }
-
 </style>

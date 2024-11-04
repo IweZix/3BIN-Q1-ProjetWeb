@@ -148,4 +148,5 @@ export default {
   align-items: center;
   font-size: 2rem; /* Ajustez la taille de la police selon vos besoins */
 }
+
 </style>

@@ -82,7 +82,7 @@ export default {
         />
       </div>
     <div class="playlist-grid">
-      <MusicPageCardComponent 
+      <MusicPageCardComponent class="musicCard"
         v-for="song in playlist.songs" 
         :key="song.id" 
         :image="song.image"  
@@ -95,7 +95,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .header-container {
   display: flex;
   justify-content: center; /* Centre les composants horizontalement */
@@ -108,14 +108,17 @@ export default {
 }
 
 .playlist-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 160px;
-  margin-top: 20px;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  justify-content: center;
 }
 
-.music-card {
-  flex: 0 1 auto;
+.musicCard ::deep(.music-card)  {
+  display: flex; 
+  border: 1px solid #570f0f;
+  border-radius: 10px;
+  background-color: red;
+  box-shadow: 0 2px 8px rgba(66, 16, 16, 0.1);
 }
 </style>
