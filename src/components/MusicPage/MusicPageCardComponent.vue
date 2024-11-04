@@ -1,7 +1,6 @@
 <script lang="ts">
 import { addToPlaylist } from '@/services/playlists';
 import Playlist from '@/types/Playlist';
-import { log } from 'console';
 import { defineComponent } from 'vue';
 import { VueFlip } from 'vue-flip';
 
@@ -78,7 +77,7 @@ export default defineComponent({
 
 <template>
   <div class="music-card">
-    <vue-flip :active-click="true" width="100%" height="auto">
+    <vue-flip :active-click="true" width="100%" max-width=150px height="auto">
       <!-- Face avant de la carte -->
       <template v-slot:front>
         <div class="card-front">
@@ -88,22 +87,27 @@ export default defineComponent({
             <p class="artist">{{ artist }}</p>
           </div>
            <!-- Button to open the modal -->
-          <button v-if="addtoPlaylist" @click="openModal(idMusic)" class="btn btn-primary">
-            Add music to a playlist
-          </button>
+            <div class="button-addPlaylist">
+            <button 
+            v-if="addtoPlaylist" 
+            @click="openModal(idMusic)" 
+            class="btn btn-primary">
+              +
+              <span class="tooltip-text">Add to a Playlist</span>
+            </button>
+            </div>
         </div>
       </template>
 
       <!-- Face arrière de la carte -->
       <template v-slot:back>
         <div class="card-back">
-          <h3 class="infoBack">More Info</h3>
-          <h5 class="album">Album: {{ backContent }}</h5>
+          <p class="infoBack">More Info</p>
+          <p class="album">Album: {{ backContent }}</p>
         </div>
       </template>
     </vue-flip>
   </div>
-
 
   <!-- Modal for selecting a playlist -->
     <div v-if="isModalOpen" class="modal-overlay" @click.self="closeModal">
@@ -121,12 +125,19 @@ export default defineComponent({
       </div>
     </div>
 </template>
+
 <style scoped>
+.music-card {
+  width: 350px;
+  height: 150px;
+  position: relative;
+}
+
 .card-front {
   display: flex; 
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #01A98D;
+  background-color: #06708E;
   box-shadow: 0 2px 8px rgba(0, 0, 0.2, 0.1);
 }
 
@@ -138,6 +149,14 @@ export default defineComponent({
   margin-right: 20px;
 }
 
+.card-back {
+  width: 350px;
+  height: 150px;
+  background-color: #038A91;
+  padding: 20px;
+  text-align: center;
+}
+
 .card-info {
   display: flex; 
   flex-direction: column; 
@@ -147,16 +166,16 @@ export default defineComponent({
 }
 
 .title {
-  color: #038A91;
-  font-size: 24px;
-  font-weight: bold; 
+  color: #0e2425;
+  font-size: 23px;
+  font-weight: bold;
   margin: 0;
 }
 
 .artist {
-  font-size: 18px; 
+  font-size: 15px; 
   font-weight: bold; 
-  color: #038A91; 
+  color: #023b32; 
 }
 
 .card-back {
@@ -167,12 +186,63 @@ export default defineComponent({
 }
 
 .infoBack {
-  color: #01A98D;
+  color: #F2F3C1;
   font-weight: bold;
+  font-size: 1.4rem;
+}
+.album {
+  font-size: 1.2rem;
 }
 
 .album,
 .hrefBack {
-  color: #01A98D;
+  color: #103300; 
 }
+
+.button-addPlaylist {
+  position: absolute; /* Positionne le bouton par rapport au conteneur parent */
+  bottom: -150px; /* Espace en bas */
+  right: -5px; /* Espace à droite */
+  padding: 5px 10px; /* Ajuste le padding pour réduire la taille */
+  font-size: 12px; /* Diminue la taille du texte */
+  color: #fff;
+}
+
+.btn{
+  background-color: #16be86;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #043e4e;
+}
+
+.btn-secondary {
+  background-color: #F2F3C1;
+  color: #333;
+}
+
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 10%; /* Position en-dessus du bouton */
+  left: -100%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.button-addPlaylist:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
 </style>

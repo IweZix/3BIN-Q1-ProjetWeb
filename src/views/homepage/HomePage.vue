@@ -30,6 +30,7 @@ export default {
       
     }
   },
+
   /**
    * Data of the component
    */
@@ -42,8 +43,6 @@ export default {
       isLoading: true as boolean,
     };
   },
-
-
 
   /**
    * Mounted lifecycle hook
@@ -65,56 +64,83 @@ export default {
 </script>
 
 <template>
-  <div class="text-center my-4 title-search">
-    <h1>Melodiq your plateform of playlist </h1>
-    <SearchBarComponent
-       :listMusic="listMusic"
-      @update:listMusic="updateMusicList"
-    />
-    <div v-if="musicList" class="container">
-      
-      <div class="row">
-        <div class="playlist-grid">
-        <MusicPageCardComponent
-         v-for="music in musicList"
-          :key="music.id"
-          :idMusic="music.id"
-          :title="music.title"
-          :artist="music.artist"
-          :image="music.image"
-          :backContent="music.album"
-          :addtoPlaylist=!!user.username
-          :playlists="playlist"
-        />
+  <div class="home-container">
+    <div class="content-wrapper text-center my-4 title-search">
+      <h1>Melodiq your platform of playlist</h1>
+      <SearchBarComponent
+        :listMusic="listMusic"
+        @update:listMusic="updateMusicList"
+      />
+    </div>
+    <div class="music-wrapper">
+      <div v-if="musicList" class="container">
+        <div class="row">
+          <div class="playlist-grid">
+            <MusicPageCardComponent
+              v-for="music in musicList"
+              :key="music.id"
+              :idMusic="music.id"
+              :title="music.title"
+              :artist="music.artist"
+              :image="music.image"
+              :backContent="music.album"
+              :addtoPlaylist="!!user.username"
+              :playlists="playlist"
+            />
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<style scoped>
+.home-container {
+  display: flex;
+  flex-direction: column; /* Empile les éléments verticalement */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
+.content-wrapper {
+  max-width: 800px; /* Définir une largeur maximale pour le conteneur */
+  width: 100%;
+}
 
+.music-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
-
-<style scoped >
-
-
-.back-playlist {
-  margin-right: 20px; /* Ajoute un espacement entre le back playlist et le header */
+.music-list-container {
+  width: 100%;
+  max-width: 800px; /* Définir une largeur maximale pour le conteneur */
 }
 
 .playlist-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 160px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Minimum 1 élément, maximum 3 éléments */
+  gap: 20px;
   margin-top: 20px;
-  justify-content: flex-start;
 }
 
 .music-card {
   flex: 0 1 auto;
 }
 
+.text-center {
+  text-align: center;
+}
 
+.my-4 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.title-search {
+  margin-top: 20px;
+}
 
 </style>
