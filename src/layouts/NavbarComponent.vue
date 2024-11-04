@@ -25,7 +25,7 @@ export default {
 
 <template>
   <div v-if="auth" class="" role="alert">
-    <div class="p-4" id="navbarWrapper">
+    <div class="p-3" id="navbarWrapper">
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <router-link to="/" class="navbar-brand nav-link">Melodiq</router-link>
@@ -66,7 +66,7 @@ export default {
     </div>
   </div>
   <div v-else class="" role="alert">
-    <div class="p-4" id="navbarWrapper">
+    <div class="p-3" id="navbarWrapper">
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <router-link to="/" class="navbar-brand nav-link">Melodiq</router-link>
@@ -105,7 +105,7 @@ export default {
 </template>
 
 <style scoped>
-.nav {
+#navbarWrapper {
   background-color: rgb(27, 27, 27);
   border-bottom: 1px solid rgb(15, 15, 15); 
 }
