@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  base: './',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -15,7 +16,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // replace with the URL of the backend server
-        target: 'http://localhost:3000',
+        target: 'https://melodiq-aretc3cfh4ggd8bs.northeurope-01.azurewebsites.net',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
