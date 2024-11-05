@@ -9,6 +9,14 @@ export default {
       auth: false,
     };
   },
+  computed: {
+    isLoginPage() {
+      return this.$route.path === '/login';
+    },
+    isRegisterPage() {
+      return this.$route.path === '/register';
+    },
+  },
   async mounted() {
     try {
       const response: any = await verify(this.token);
@@ -46,9 +54,6 @@ export default {
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/about" class="nav-link">About</router-link>
-              </li>
-              <li class="nav-item">
                 <router-link to="/playlists" class="nav-link">Playlists</router-link>
               </li>
             </ul>
@@ -65,7 +70,8 @@ export default {
       </nav>
     </div>
   </div>
-  <div v-else class="" role="alert">
+
+  <div v-else-if="isLoginPage" class="" role="alert">
     <div class="p-3" id="navbarWrapper">
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
@@ -86,8 +92,38 @@ export default {
               <li class="nav-item">
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <div>
+                <router-link to="/register" class="btn btn-primary">Register</router-link>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div v-else class="" role="alert">
+    <div class="p-3" id="navbarWrapper">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <router-link to="/" class="navbar-brand nav-link">Melodiq</router-link>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <router-link to="/about" class="nav-link">About</router-link>
+                <router-link to="/" class="nav-link">Home</router-link>
               </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
