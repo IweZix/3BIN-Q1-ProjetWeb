@@ -108,17 +108,9 @@ export default {
 }
 
 .playlist-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  display: list-item;
   gap: 20px;
   justify-content: center;
 }
 
-.musicCard ::deep(.music-card)  {
-  display: flex; 
-  border: 1px solid #570f0f;
-  border-radius: 10px;
-  background-color: red;
-  box-shadow: 0 2px 8px rgba(66, 16, 16, 0.1);
-}
 </style>

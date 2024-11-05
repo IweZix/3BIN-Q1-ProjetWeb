@@ -74,7 +74,7 @@ export default defineComponent({
 
 <template>
   <div class="music-card">
-    <vue-flip :active-click="true" width="100%" max-width=150px height="auto">
+    <vue-flip :active-click="true" width="100%" max-width=100% height="auto">
       <!-- Face avant de la carte -->
       <template v-slot:front>
         <div class="card-front">
@@ -108,7 +108,7 @@ export default defineComponent({
 
   <!-- Modal for selecting a playlist -->
     <div v-if="isModalOpen" class="modal-overlay" @click.self="closeModal">
-      <div class="modal-content">
+      <div class="modal-content mb-2">
         <h4>Select a Playlist</h4>
         <select v-model="selectedPlaylist" class="form-select">
           <option v-for="playlist in playlists" 
@@ -133,9 +133,11 @@ export default defineComponent({
 }
 
 .music-card {
-  width: 350px;
+  width: 75%;
   height: 150px;
+  margin-left: 12.5%;
   position: relative;
+  margin-bottom: 20px;
 }
 
 .album-image {
@@ -147,8 +149,6 @@ export default defineComponent({
 }
 
 .card-back {
-  width: 350px;
-  height: 150px;
   background-color: #038A91;
   padding: 20px;
   text-align: center;

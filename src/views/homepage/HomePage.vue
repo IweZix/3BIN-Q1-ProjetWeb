@@ -121,8 +121,7 @@ export default {
 
 .playlist-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Minimum 1 élément, maximum 3 éléments */
-  gap: 20px;
+  grid-template-columns: repeat(1); /* Minimum 1 élément, maximum 3 éléments */
   margin-top: 20px;
 }
 
