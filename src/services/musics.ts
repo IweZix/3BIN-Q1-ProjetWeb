@@ -3,7 +3,7 @@ import Playlist from '@/types/Playlist';
 
 export const getImage = async (id: String): Promise<any> => {
     try {
-        const response = await axios.get<any>(`/api/spotify/image/${id}`);
+        const response = await axios.get<any>(`https://melodiq-aretc3cfh4ggd8bs.northeurope-01.azurewebsites.net/spotify/image/${id}`);
 
         return response.data;
     } catch (error) {
@@ -17,7 +17,7 @@ export const getImage = async (id: String): Promise<any> => {
  */
 export const getPlaylistUser = async (id: Number): Promise<Playlist> => {
   try {
-    const response = await axios.get<Playlist>(`/api/playlists/${id}`, {
+    const response = await axios.get<Playlist>(`https://melodiq-aretc3cfh4ggd8bs.northeurope-01.azurewebsites.net/playlists/${id}`, {
         headers: {
             Authorization: `${localStorage.getItem('token')}`
         }

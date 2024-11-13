@@ -9,7 +9,7 @@ import AuthenticatedUser from '@/types/AuthenticatedUser';
  */
 export const login = async (username: String, password: String): Promise<AuthenticatedUser> => {
     try {
-        const response = await axios.post<AuthenticatedUser>('/api/auths/login', {
+        const response = await axios.post<AuthenticatedUser>('https://melodiq-aretc3cfh4ggd8bs.northeurope-01.azurewebsites.net/auths/login', {
             username,
             password
         });
@@ -27,7 +27,7 @@ export const login = async (username: String, password: String): Promise<Authent
  */
 export const verify = async (token: String): Promise<AuthenticatedUser> => {
     try {
-        const response = await axios.post<AuthenticatedUser>('/api/auths/verify', {
+        const response = await axios.post<AuthenticatedUser>('https://melodiq-aretc3cfh4ggd8bs.northeurope-01.azurewebsites.net/auths/verify', {
             token
         });
 
@@ -39,7 +39,7 @@ export const verify = async (token: String): Promise<AuthenticatedUser> => {
 
 export const register = async (username: String, password: String) => {
     try {
-        const response = await axios.post('/api/auths/register', {
+        const response = await axios.post('https://melodiq-aretc3cfh4ggd8bs.northeurope-01.azurewebsites.net/auths/register', {
             username,
             password
         });

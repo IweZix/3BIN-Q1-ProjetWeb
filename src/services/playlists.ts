@@ -6,7 +6,7 @@ import axios from 'axios';
  */
 export const getAllPlaylists = async (): Promise<Array<any>> => {
     try {
-        const response = await axios.get<Array<any>>('/api/playlists/all', {
+        const response = await axios.get<Array<any>>('https://melodiq-aretc3cfh4ggd8bs.northeurope-01.azurewebsites.net/playlists/all', {
             headers: {
                 Authorization: `${localStorage.getItem('token')}`
             }
@@ -26,7 +26,7 @@ export const getAllPlaylists = async (): Promise<Array<any>> => {
 export const create = async (name: string): Promise<any> => {
     const token = localStorage.getItem('token');
     try {
-        const response = await axios.post('/api/playlists/create', 
+        const response = await axios.post('https://melodiq-aretc3cfh4ggd8bs.northeurope-01.azurewebsites.net/playlists/create', 
             { name },
             {
                 headers: {
@@ -44,7 +44,7 @@ export const create = async (name: string): Promise<any> => {
 export const addToPlaylist = async (idPlaylist: number,musickey: string): Promise<any> => {
     const token = localStorage.getItem('token');
     try {
-        const response = await axios.post('/api/playlists/add/id', 
+        const response = await axios.post('https://melodiq-aretc3cfh4ggd8bs.northeurope-01.azurewebsites.net/playlists/add/id', 
             {  "idPLaylist":idPlaylist,"idMusic":musickey },
             {
                 headers: {
